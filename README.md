@@ -244,7 +244,6 @@ Below are the distributions of the features after log-scaling and standardizatio
 
 ---
 
-## 5. Dataset Dumps
+## 5. Dataset
 
-![Dataset Dump](images/figure18.png)  
-![Dump of Numeric Features](images/figure19.png)
+![Cleaned Dataset:](cleaned_oedi_dataset.csv)  
