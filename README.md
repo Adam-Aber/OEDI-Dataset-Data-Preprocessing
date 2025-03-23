@@ -181,7 +181,7 @@ Below are the distributions of the features after log-scaling and standardizatio
 - **Distribution:** Peaks at 0 (frequency ~25,000).
 - **Correlation:** 0.122722.
 
-![InteriorEquipment:Gas [kW](Hourly)_log_scaled](images/interior_equipment_gas_log_scaled_distribution.png)
+![InteriorEquipment:Gas [kW](Hourly)_log_scaled](images/normalized_dist_InteriorEquipment_Gas_[kW](Hourly).png)
 
 ### 4.7 Water Heater:WaterSystems:Gas [kW](Hourly)_log_scaled
 - **Distribution:** Peaks at -1 (frequency ~200,000), steep drop.
