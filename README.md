@@ -1,7 +1,7 @@
 # OEDI-Dataset-Data-Preprocessing
 
 
-## 1. Chosen Dataset Description
+## 1. Dataset Description
 
 For the task of detecting electricity theft in the smart grid, I evaluated three datasets: the Open Energy Data Initiative (OEDI) dataset, the Smart Home Energy Usage (SHEU) dataset, and the Smart Home with Weather Information (SHWI) dataset. The OEDI dataset was selected as it best aligns with the needs of our electricity theft detection project, particularly for binary classification. It contains **560,655 samples** across **13 columns** (12 features and 1 label). The theft label distinguishes between "Normal" consumption and six theft types ("Theft1" through "Theft6"), which can be simplified into a binary label (0 for "Normal," 1 for any theft). This suits our goal of detecting theft without specifying the type.
 
