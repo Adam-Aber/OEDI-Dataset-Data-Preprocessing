@@ -3,7 +3,7 @@
 
 ## 1. Chosen Dataset Description
 
-In Phase 1, we evaluated three datasets: the Open Energy Data Initiative (OEDI) dataset, the Smart Home Energy Usage (SHEU) dataset, and the Smart Home with Weather Information (SHWI) dataset. The OEDI dataset was selected as it best aligns with the needs of our electricity theft detection project, particularly for binary classification. It contains **560,655 samples** across **13 columns** (12 features and 1 label). The theft label distinguishes between "Normal" consumption and six theft types ("Theft1" through "Theft6"), which can be simplified into a binary label (0 for "Normal," 1 for any theft). This suits our goal of detecting theft without specifying the type.
+For the task of detecting electricity theft in the smart grid, I evaluated three datasets: the Open Energy Data Initiative (OEDI) dataset, the Smart Home Energy Usage (SHEU) dataset, and the Smart Home with Weather Information (SHWI) dataset. The OEDI dataset was selected as it best aligns with the needs of our electricity theft detection project, particularly for binary classification. It contains **560,655 samples** across **13 columns** (12 features and 1 label). The theft label distinguishes between "Normal" consumption and six theft types ("Theft1" through "Theft6"), which can be simplified into a binary label (0 for "Normal," 1 for any theft). This suits our goal of detecting theft without specifying the type.
 
 The SHEU and SHWI datasets lack theft-specific labels, making them less suitable despite their relevance to energy optimization studies. The OEDI dataset has a mild class imbalance: **331,824 "Normal" instances (59.2%)** and **228,831 theft instances (40.8%)**, which can be mitigated through oversampling or class weighting. This balance is better than typical real-world scenarios where theft is rarer. The "Class" attribute, with 16 client types (each with 35,040 samples), provides diverse consumption patterns, enhancing model applicability across user types—unlike SHEU (focused on smart homes) and SHWI (no client categorization).
 
@@ -15,68 +15,73 @@ The OEDI dataset includes **10 numerical features**, such as `Electricity:Facili
 
 Below are descriptions of key features in the OEDI dataset, including their raw distributions and relevance to theft detection:
 
-### 2.1 Fans:Electricity [kW](Hourly)
+### 2.1 Electricity:Facility [kW](Hourly)
+This attribute represents total electricity consumption over the whole facility and is an important marker for detecting electricity theft because it catches in one sweep usage patterns that are easy to manipulate, for example, large decreases or zeroing out as in Theft Types 1 and 2. Its raw statistical form, as presented in the histogram, is extremely right-skewed with a sharp peak at 0 kW with a frequency of approximately 200,000, a sharp decrease to approximately 10,000 at 250 kW, and an extended tail to approximately 1,750 kW with very low frequencies, suggesting large number of zero or low usage periods punctuated by isolated high consumption events. There are no missing values in this column.
+
+![Electricity:Facility [kW](Hourly)](distributions/figure1.png)
+
+### 2.2 Fans:Electricity [kW](Hourly)
 - **Significance:** Low to moderate; can indicate theft (e.g., under-reporting in Theft Type 1), though influenced by seasonal variation.
 - **Distribution:** Highly right-skewed, peaks at 0 kW (frequency ~400,000), drops to ~5,000 at 200 kW, with a tail to 800 kW. Suggests cooling is often unused, possibly due to climate.
 - **Missing Values:** None.
 
-![Fans:Electricity [kW](Hourly)](images/figure2.png)
+![Fans:Electricity [kW](Hourly)](distributions/figure2.png)
 
 ### 2.2 Cooling:Electricity [kW](Hourly)
 - **Significance:** Limited; less relevant unless manipulated significantly.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~250,000), steep drop-off after 50 kW. Indicates minimal heating use, possibly due to gas reliance or weather.
 - **Missing Values:** None.
 
-![Cooling:Electricity [kW](Hourly)](images/figure3.png)
+![Cooling:Electricity [kW](Hourly)](distributions/figure3.png)
 
 ### 2.3 Heating:Electricity [kW](Hourly)
 - **Significance:** Low; relevant only if electric heating is a major factor (unlikely in this dataset).
 - **Distribution:** Very right-skewed, peaks at 0 kW (frequency ~250,000), small values beyond 50 kW.
 - **Missing Values:** None.
 
-![Heating:Electricity [kW](Hourly)](images/figure4.png)
+![Heating:Electricity [kW](Hourly)](distributions/figure4.png)
 
 ### 2.4 InteriorLights:Electricity [kW](Hourly)
 - **Significance:** High; constant consumer, manipulable (e.g., switched off in Theft Type 2).
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~25,000), drops to ~1,000 at 100 kW, sparse tail to 400 kW. Indicates frequent low/no usage with sporadic peaks.
 - **Missing Values:** None.
 
-![InteriorLights:Electricity [kW](Hourly)](images/figure5.png)
+![InteriorLights:Electricity [kW](Hourly)](distributions/figure5.png)
 
 ### 2.5 InteriorEquipment:Electricity [kW](Hourly)
 - **Significance:** High; manipulable (e.g., under-reporting in Theft Type 1), key for theft detection.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~200,000), drops to ~1,000 at 100 kW, sparse tail to 400 kW.
 - **Missing Values:** None.
 
-![InteriorEquipment:Electricity [kW](Hourly)](images/figure6.png)
+![InteriorEquipment:Electricity [kW](Hourly)](distributions/figure6.png)
 
 ### 2.6 Gas:Facility [kW](Hourly)
 - **Significance:** Moderate; relevant if gas use is tampered with (e.g., reduced in Theft Type 1).
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~500,000), drops to ~10,000 at 1,000 kW, tail to 4,000 kW. Shows frequent no-gas intervals.
 - **Missing Values:** None.
 
-![Gas:Facility [kW](Hourly)](images/figure7.png)
+![Gas:Facility [kW](Hourly)](distributions/figure7.png)
 
 ### 2.7 Heating:Gas [kW](Hourly)
 - **Significance:** Low; relevant only if gas heating is significant and controllable.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~120,000), sharp decline beyond 1,000 kW. Mostly inactive.
 - **Missing Values:** None.
 
-![Heating:Gas [kW](Hourly)](images/figure8.png)
+![Heating:Gas [kW](Hourly)](distributions/figure8.png)
 
 ### 2.8 InteriorEquipment:Gas [kW](Hourly)
 - **Significance:** Moderate; relevant if manipulated in theft.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~300,000), drops to ~1,000 at 20 kW, tail to 80 kW. Sporadic usage.
 - **Missing Values:** None.
 
-![InteriorEquipment:Gas [kW](Hourly)](images/figure9.png)
+![InteriorEquipment:Gas [kW](Hourly)](distributions/figure9.png)
 
 ### 2.9 Water Heater:WaterSystems:Gas [kW](Hourly)
 - **Significance:** Moderate; relevant if manipulated.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~500,000), drops to ~10,000 at 100 kW, tail to 800 kW. Frequent inactivity.
 - **Missing Values:** None.
 
-![Water Heater:WaterSystems:Gas [kW](Hourly)](images/figure10.png)
+![Water Heater:WaterSystems:Gas [kW](Hourly)](distributions/figure10.png)
 
 ### 2.10 Class
 - **Significance:** High; captures consumption variation across 16 client types (e.g., "FullServiceRestaurant," "LargeOffice"), each with 35,040 samples.
