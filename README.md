@@ -13,7 +13,7 @@ The OEDI dataset includes **10 numerical features**, such as `Electricity:Facili
 
 ## 2. Feature Descriptions
 
-Below are descriptions of key features in the OEDI dataset, including their distributions and relevance to theft detection:
+Below are descriptions of key features in the OEDI dataset, including their raw distributions and relevance to theft detection:
 
 ### 2.1 Fans:Electricity [kW](Hourly)
 - **Significance:** Low to moderate; can indicate theft (e.g., under-reporting in Theft Type 1), though influenced by seasonal variation.
@@ -145,47 +145,67 @@ We used **Pearson correlation** between log-scaled features and `theft_binary` t
 
 ## 4. Processed Feature Distributions
 
+Below are the distributions of the features after log-scaling and standardization. These reflect the normalized data used for modeling.
+
 ### 4.1 Electricity:Facility [kW](Hourly)_log_scaled
 - **Distribution:** Sharp spike near 0 (frequency > 20,000), symmetric drops with peaks at 1 and 2. Multi-modal KDE plot.
 - **Correlation:** 0.308819 (highest).
 
-![Electricity:Facility [kW](Hourly)_log_scaled](images/figure11.png)
+![Electricity:Facility [kW](Hourly)_log_scaled](images/electricity_facility_log_scaled_distribution.png)
 
 ### 4.2 Fans:Electricity [kW](Hourly)_log_scaled
 - **Distribution:** Steep peak at -0.5 (frequency ~12,000), gradual decline.
 - **Correlation:** 0.173962.
 
-![Fans:Electricity [kW](Hourly)_log_scaled](images/figure12.png)
+![Fans:Electricity [kW](Hourly)_log_scaled](images/fans_electricity_log_scaled_distribution.png)
 
 ### 4.3 InteriorLights:Electricity [kW](Hourly)_log_scaled
 - **Distribution:** Peaks at 0 (frequency ~35,000), multi-modal.
 - **Correlation:** 0.250624.
 
-![InteriorLights:Electricity [kW](Hourly)_log_scaled](images/figure13.png)
+![InteriorLights:Electricity [kW](Hourly)_log_scaled](images/interior_lights_electricity_log_scaled_distribution.png)
 
 ### 4.4 InteriorEquipment:Electricity [kW](Hourly)_log_scaled
 - **Distribution:** Spike near 0 (frequency ~30,000), broad distribution.
 - **Correlation:** 0.284878 (second-highest).
 
-![InteriorEquipment:Electricity [kW](Hourly)_log_scaled](images/figure14.png)
+![InteriorEquipment:Electricity [kW](Hourly)_log_scaled](images/interior_equipment_electricity_log_scaled_distribution.png)
 
 ### 4.5 Gas:Facility [kW](Hourly)_log_scaled
 - **Distribution:** Sharp spike at -0.5 (frequency ~100,000), gradual drop.
 - **Correlation:** 0.164465.
 
-![Gas:Facility [kW](Hourly)_log_scaled](images/figure15.png)
+![Gas:Facility [kW](Hourly)_log_scaled](images/gas_facility_log_scaled_distribution.png)
 
 ### 4.6 InteriorEquipment:Gas [kW](Hourly)_log_scaled
 - **Distribution:** Peaks at 0 (frequency ~25,000).
 - **Correlation:** 0.122722.
 
-![InteriorEquipment:Gas [kW](Hourly)_log_scaled](images/figure16.png)
+![InteriorEquipment:Gas [kW](Hourly)_log_scaled](images/interior_equipment_gas_log_scaled_distribution.png)
 
 ### 4.7 Water Heater:WaterSystems:Gas [kW](Hourly)_log_scaled
 - **Distribution:** Peaks at -1 (frequency ~200,000), steep drop.
 - **Correlation:** 0.128854.
 
-![Water Heater:WaterSystems:Gas [kW](Hourly)_log_scaled](images/figure17.png)
+![Water Heater:WaterSystems:Gas [kW](Hourly)_log_scaled](images/water_heater_watersystems_gas_log_scaled_distribution.png)
+
+### 4.8 Cooling:Electricity [kW](Hourly)_log_scaled (Removed)
+- **Distribution:** Peaks near 0 (frequency ~250,000), with a long tail.
+- **Correlation:** 0.083642 (below threshold, removed).
+
+![Cooling:Electricity [kW](Hourly)_log_scaled](images/cooling_electricity_log_scaled_distribution.png)
+
+### 4.9 Heating:Electricity [kW](Hourly)_log_scaled (Removed)
+- **Distribution:** Peaks near 0 (frequency ~500,000), with a very sparse tail.
+- **Correlation:** 0.038806 (below threshold, removed).
+
+![Heating:Electricity [kW](Hourly)_log_scaled](images/heating_electricity_log_scaled_distribution.png)
+
+### 4.10 Heating:Gas [kW](Hourly)_log_scaled (Removed)
+- **Distribution:** Peaks near 0 (frequency ~250,000), with a long tail.
+- **Correlation:** 0.084933 (below threshold, removed).
+
+![Heating:Gas [kW](Hourly)_log_scaled](images/heating_gas_log_scaled_distribution.png)
 
 ---
 
