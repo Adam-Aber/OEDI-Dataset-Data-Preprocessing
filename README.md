@@ -28,6 +28,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![Fans:Electricity [kW](Hourly)](distributions/figure2.png)
 
 ### 2.2 Cooling:Electricity [kW](Hourly)
+
+This feature tracks the electricity usage of cooling devices, such as air conditioning,and can have low to moderate significance for theft detection if manipulated, for example, under-reporting in Theft Type 1, though its value could be moderated by seasonal variation. Its raw histogram is highly right-skewed with a high peak at 0 kW reaching a frequency of around 400,000, declining sharply to about 5,000 at 200 kW, and having an extremely low tail until 800 kW, indicating that cooling is usually not in use, perhaps due to climatic factors. There are no missing values in this column.
+
 - **Significance:** Limited; less relevant unless manipulated significantly.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~250,000), steep drop-off after 50 kW. Indicates minimal heating use, possibly due to gas reliance or weather.
 - **Missing Values:** None.
@@ -35,6 +38,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![Cooling:Electricity [kW](Hourly)](distributions/figure3.png)
 
 ### 2.3 Heating:Electricity [kW](Hourly)
+
+The "Heating:Electricity [kW](Hourly)" characteristic records the use of electricity by heating systems, with little applicability to theft detection unless electric heating is a significant and control lable factor, which seems less likely given the nature of the dataset. Its raw histogram is very right-skewed with a maximum at 0 kW of frequency 250,000 with a steep drop-off with very small values after 50 kW, suggesting that heating is not typically in operation, possibly due to reliance on gas or weather conditions. There are no missing values in this column.
+
 - **Significance:** Low; relevant only if electric heating is a major factor (unlikely in this dataset).
 - **Distribution:** Very right-skewed, peaks at 0 kW (frequency ~250,000), small values beyond 50 kW.
 - **Missing Values:** None.
@@ -42,6 +48,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![Heating:Electricity [kW](Hourly)](distributions/figure4.png)
 
 ### 2.4 InteriorLights:Electricity [kW](Hourly)
+
+"InteriorLights:Electricity [kW](Hourly)" is the consumption of electricity for interior light, a constant consumer with high salience for theft detection since it can be tampered with, for instance, being  switched off in Theft Type 2. Its raw distribution is right-skewed, peaking at 0 kW with a frequency of approximately 25,000, to approximately 1,000 at 100 kW, and having a sparse tail up to 400 kW, meaning frequent no or low lighting with sporadic greater usage. There are no missing values in this column.
+
 - **Significance:** High; constant consumer, manipulable (e.g., switched off in Theft Type 2).
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~25,000), drops to ~1,000 at 100 kW, sparse tail to 400 kW. Indicates frequent low/no usage with sporadic peaks.
 - **Missing Values:** None.
@@ -49,6 +58,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![InteriorLights:Electricity [kW](Hourly)](distributions/figure5.png)
 
 ### 2.5 InteriorEquipment:Electricity [kW](Hourly)
+
+The "InteriorEquipment:Electricity[kW](Hourly)" attribute records electricity usage by interior equipment, i.e., appliances or machinery, and is highly relevant to theft detection due to its significance as a manipulable consumption type, e.g., under-reporting in Theft Type 1. Its raw distribution is right-skewed with a peak at 0 kW at approximately 200,000 frequency, decreasing to approximately 1,000 at 100 kW, and with a sparse tail to 400 kW, indicative of frequent zero or low equipment usage with occasional peaks. There are no missing values in this column.
+
 - **Significance:** High; manipulable (e.g., under-reporting in Theft Type 1), key for theft detection.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~200,000), drops to ~1,000 at 100 kW, sparse tail to 400 kW.
 - **Missing Values:** None.
@@ -56,6 +68,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![InteriorEquipment:Electricity [kW](Hourly)](distributions/figure6.png)
 
 ### 2.6 Gas:Facility [kW](Hourly)
+
+The "Gas:Facility [kW](Hourly)" feature is total gas usage across the facility, of moderate significance in identifying theft if gas use is tampered with, for instance, reduced use in Theft Type 1. Its raw distribution is right-skewed, peaking at 0 kW with a frequency of some 500,000, dropping to about 10,000 at 1,000 kW, and with a minor tail to 4,000 kW, showing plenty of no-gas intervals and occasional heavy use. There are no missing values in this column.
+
 - **Significance:** Moderate; relevant if gas use is tampered with (e.g., reduced in Theft Type 1).
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~500,000), drops to ~10,000 at 1,000 kW, tail to 4,000 kW. Shows frequent no-gas intervals.
 - **Missing Values:** None.
@@ -63,6 +78,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![Gas:Facility [kW](Hourly)](distributions/figure7.png)
 
 ### 2.7 Heating:Gas [kW](Hourly)
+
+The "Heating:Gas [kW](Hourly)" feature measures consumption of heating equipment by gas, and low relevance to crime except in case gas heating accounts for a substantial and controllable portion. Its untrimmed histogram is right-skewed, largest at 0 kW with a frequency (120,000) then precipitous decline with extremely minuscule values beyond 1,000 kW, which is indicative of most heating being quiescent nearly all the time. There are no missing values in this column.
+
 - **Significance:** Low; relevant only if gas heating is significant and controllable.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~120,000), sharp decline beyond 1,000 kW. Mostly inactive.
 - **Missing Values:** None.
@@ -70,6 +88,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![Heating:Gas [kW](Hourly)](distributions/figure8.png)
 
 ### 2.8 InteriorEquipment:Gas [kW](Hourly)
+
+The "InteriorEquipment:Gas [kW](Hourly)" feature derives gas usage by interior equipment and is of moderate relevance if manipulated in theft operations. Its raw distribution is right-skewed, peaking at 0 kW at approximately 300,000, falling to approximately 1,000 at 20 kW, and with a thin tail up to 80 kW, and this suggests sporadic inactivity with irregular usage. There are no missing values in this column.
+
 - **Significance:** Moderate; relevant if manipulated in theft.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~300,000), drops to ~1,000 at 20 kW, tail to 80 kW. Sporadic usage.
 - **Missing Values:** None.
@@ -77,6 +98,9 @@ This attribute represents total electricity consumption over the whole facility 
 ![InteriorEquipment:Gas [kW](Hourly)](distributions/figure9.png)
 
 ### 2.9 Water Heater:WaterSystems:Gas [kW](Hourly)
+
+The "Water Heater:WaterSystems:Gas [kW](Hourly)" attribute is a gauge of gas usage for water heating systems, being moderately important if manipulated in theft. Its raw distribution is right-skewed, with a peak at 0 kW and a frequency of approximately 500,000, declining to approximately 10,000 at 100 kW, and with a sparse tail to 800 kW, indicating frequent inactivity with occasional use. There are no missing values in this column.
+
 - **Significance:** Moderate; relevant if manipulated.
 - **Distribution:** Right-skewed, peaks at 0 kW (frequency ~500,000), drops to ~10,000 at 100 kW, tail to 800 kW. Frequent inactivity.
 - **Missing Values:** None.
@@ -84,11 +108,17 @@ This attribute represents total electricity consumption over the whole facility 
 ![Water Heater:WaterSystems:Gas [kW](Hourly)](distributions/figure10.png)
 
 ### 2.10 Class
+
+The "Class" attribute specifies the class of client (like ’FullServiceRestaurant’), of high significance for capturing consumption variation affecting theft behavior among different types of users, such as warehouses versus hospitals. It has 17 types—16 types of clients (LargeOffice, 35,040 samples per type, to mention one), attribute demonstrating that there is well-balanced data with an infinitesimal anomaly. There are no missing values in this column.
+
 - **Significance:** High; captures consumption variation across 16 client types (e.g., "FullServiceRestaurant," "LargeOffice"), each with 35,040 samples.
 - **Distribution:** Balanced, no anomalies.
 - **Missing Values:** None.
 
 ### 2.11 Theft
+
+The "theft" feature is the original feature, classifying patterns as either "Normal" or one of six theft types, and is the target of th binary classification problem of detecting electricity theft. It has 7 unique values: Normal (331,824 samples, 59.2%), Theft1 (51,083, 9.1%), Theft3 (44,349, 7.9%), Theft4 (41,460, 7.4%), Theft6 (35,413, 6.3%), Theft5 (33,553, 6.0%), and Theft2 (22,973, 4.1%), with an imbalance of 59.2% "Normal" samples. There are no missing values, and since it is the target variable, it is uncorrelated with itself, but its synthetically generated theft patterns increase detection study, so it is quite relevant even though imbalance has to be dealt with
+
 - **Significance:** Target variable; classifies patterns as "Normal" (331,824 samples, 59.2%) or one of six theft types (Theft1: 9.1%, Theft2: 4.1%, Theft3: 7.9%, Theft4: 7.4%, Theft5: 6.0%, Theft6: 6.3%).
 - **Distribution:** Imbalanced (59.2% Normal), addressed via binary conversion.
 - **Missing Values:** None.
